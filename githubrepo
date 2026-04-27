@@ -1,2 +1,5 @@
 ﻿curl -X GET https://api.github.com/repos/rishabmishraa/expressBookReviews
-  "fork": true,   "parent": {     "fork": false,     "fork": false,
+
+Output:
+"fork": True
+"parent.full_name": "ibm-developer-skills-network/expressBookReviews"
