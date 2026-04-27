@@ -40,6 +40,22 @@ public_users.get('/isbn/:isbn', function (req, res) {
     .catch(err => res.status(err.status).json({ message: err.message }));
 });
 
+// Task 2: Get book by ISBN – async/await with Axios
+public_users.get('/isbn/:isbn', async function (req, res) {
+  try {
+    const response = await axios.get(`http://localhost:5000/isbn/${req.params.isbn}`);
+    res.send(response.data);
+  } catch (error) {
+    new Promise((resolve, reject) => {
+      const book = books[req.params.isbn];
+      if (book) resolve(book);
+      else reject({ status: 404, message: "Book not found" });
+    })
+      .then(book => res.send(book))
+      .catch(err => res.status(err.status).json({ message: err.message }));
+  }
+});
+
 // Task 3: Get books by author – async/await
 public_users.get('/author/:author', async function (req, res) {
   try {
